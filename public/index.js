@@ -55,6 +55,14 @@ function renderUsers(users) {
     tbody.appendChild(row);
   });
 }
+//delete all priority
+async function deleteAllPriority() {
+  try {
+    await fetch(`/deleteAllPriority`, { method: "DELETE" });
+  } catch (error) {
+    "error deleting all priorities", error;
+  }
+}
 //delete priority by id
 const deletePriority = async (id) => {
   if (!confirm("Are you sure you want to delete this priority?")) return;

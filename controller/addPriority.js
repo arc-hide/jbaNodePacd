@@ -220,9 +220,9 @@ const deletePriority = async (req, res) => {
   }
 };
 
-function deleteAllPriority() {
-  alert("DELETE ALL PRIORTIES");
-}
+const deleteAllPriority = async (req, res) => {
+  console.log("deleting all the priorities");
+};
 
 module.exports = {
   addPriority,
