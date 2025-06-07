@@ -1,0 +1,396 @@
+<br />
+<div class="container">
+  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item mr-3">
+      <a
+        class="button"
+        id="pills-home-tab"
+        data-toggle="pill"
+        href="#pills-home"
+        role="tab"
+        aria-controls="pills-home"
+        aria-selected="true"
+        >Add priority</a
+      >
+    </li>
+    <li class="nav-item mr-3">
+      <a
+        class="button"
+        id="pills-contact-tab"
+        data-toggle="pill"
+        href="#pills-contact"
+        role="tab"
+        aria-controls="pills-contact"
+        aria-selected="false"
+        >Find Priority</a
+      >
+    </li>
+  </ul>
+  <div class="tab-content" id="pills-tabContent">
+    <div
+      class="tab-pane fade show active"
+      id="pills-home"
+      role="tabpanel"
+      aria-labelledby="pills-home-tab"
+    >
+      <form class="bg-light p-5 w-100" method="POST" action="/addPriority">
+        <figure>
+          <blockquote class="blockquote">
+            <p>PACD Log for Priority persons Today</p>
+          </blockquote>
+          <figcaption class="blockquote-footer">
+            Register <cite title="Source Title">Priority Person</cite>
+          </figcaption>
+        </figure>
+        <div class="form-row col">
+          <div class="row row-cols-auto">
+            <div class="col">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="First name"
+                name="firstName"
+                required
+              />
+            </div>
+            <div class="col">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Middle name"
+                name="middleName"
+              />
+            </div>
+            <div class="col">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Last name"
+                name="lastName"
+                required
+              />
+            </div>
+            <div class="col">
+              <input
+                type="text"
+                class="form-control-sm"
+                placeholder="id Number"
+                name="idNumber"
+                required
+              />
+            </div>
+
+            <select
+              class="form-select-sm col-2 bg-grey form-control-sm"
+              aria-label="Default select example "
+              name="typeOfPriority"
+              required
+            >
+              <option selected>Type OF Priority</option>
+              <option value="senior">senior</option>
+              <option value="pregnant">pregnant</option>
+              <option value="pwd">pwd</option>
+              <option value="Hospital">Hospital requirement</option>
+              <option value="urgent">emergency</option>
+              <option value="philid">Phil-id</option>
+            </select>
+          </div>
+          <blockquote class="mt-3">Document type of transactions:</blockquote>
+          <div class="container row row-cols-auto">
+            <select
+              class="form-select-xs col-1 bg-secondary form-control-sm"
+              aria-label="Default select example "
+              name="birth"
+            >
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+            &nbsp;
+            <select
+              class="form-select-sm col-1 bg-warning form-control-sm"
+              aria-label="Default select example"
+              name="death"
+            >
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+            &nbsp;
+            <select
+              class="form-select-sm col-1 bg-danger form-control-sm"
+              aria-label="Default select example "
+              name="marriage"
+            >
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+            &nbsp;
+
+            <select
+              class="form-select-sm col-1 bg-success form-control-sm"
+              aria-label="Default select example "
+              name="cenomar"
+            >
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+          <div class="w-100 d-flex justify-content-end align-items-end mt-3">
+            <button type="submit" class="btn btn-secondary mb-3">
+              Confirm Priority
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div
+      class="tab-pane fade"
+      id="pills-contact"
+      role="tabpanel"
+      aria-labelledby="pills-contact-tab"
+    >
+      <div class="container mt-5 w-auto">
+        &nbsp;
+        <div class="container d-flex bd-highlight">
+          <figcaption class="blockquote-footer p-2 w-100 bd-highlight">
+            List of <cite title="Source Title">Priorities:</cite>
+          </figcaption>
+
+          <!-- From Uiverse.io by boryanakrasteva -->
+          <div class="input-contain">
+            <input
+              type="text"
+              name="search"
+              id="search"
+              class="input"
+              placeholder="search prio..."
+            />
+            <span class="icon">
+              <svg
+                width="19px"
+                height="19px"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    opacity="1"
+                    d="M14 5H20"
+                    stroke="#000"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                  <path
+                    opacity="1"
+                    d="M14 8H17"
+                    stroke="#000"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                  <path
+                    d="M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2"
+                    stroke="#000"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                  <path
+                    opacity="1"
+                    d="M22 22L20 20"
+                    stroke="#000"
+                    stroke-width="3.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </g>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+      <a href="/" class="ml-3 p-3"
+        ><i class="fa fa-refresh p-1" aria-hidden="true"></i>Refresh</a
+      >
+      <section class="">
+        <div class="bg-image" style="background-color: #f5f7fa">
+          <div class="mask d-flex align-items-center h-100">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-body p-0">
+                      <div class="table">
+                        <table class="table mb-0 .table-bordered">
+                          <thead style="background-color: #002d72">
+                            <tr>
+                              <th scope="col-sm" style="font-size: 18px">
+                                Date
+                              </th>
+                              <th scope="col-sm" style="font-size: 18px">
+                                Firstname
+                              </th>
+                              <th scope="col-sm" style="font-size: 18px">
+                                Middlename
+                              </th>
+                              <th scope="col-sm" style="font-size: 18px">
+                                Lastname
+                              </th>
+                              <th scope="col-sm" style="font-size: 18px">
+                                Id #
+                              </th>
+                              <th scope="col-sm" style="font-size: 18px">
+                                type Of Priority
+                              </th>
+                              <th
+                                scope="col-sm"
+                                class="text-center"
+                                style="font-size: 18px"
+                              >
+                                Birth
+                              </th>
+                              <th
+                                scope="col-sm"
+                                class="text-center"
+                                style="font-size: 18px"
+                              >
+                                Cenomar
+                              </th>
+                              <th
+                                scope="col-sm"
+                                class="text-center"
+                                style="font-size: 18px"
+                              >
+                                Marriage
+                              </th>
+                              <th
+                                scope="col-sm"
+                                class="text-center"
+                                style="font-size: 18px"
+                              >
+                                Death Cert.
+                              </th>
+                              <th
+                                scope="col-sm"
+                                class="text-center"
+                                style="font-size: 18px"
+                              >
+                                Action
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody id="tbody">
+                            <% priorityData.forEach(element => { %>
+                            <tr>
+                              <td class="text-center">
+                                <em style="font-size: 12px; line-height: 1px">
+                                  <%= new
+                                  Date(element.createdAt).toLocaleString()
+                                  %></em
+                                >
+                              </td>
+                              <td class="text-center">
+                                <%= element.firstName %>
+                              </td>
+                              <td class="text-center">
+                                <%= element.middleName %>
+                              </td>
+                              <td class="text-center">
+                                <%= element.lastName %>
+                              </td>
+                              <td class="text-center">
+                                <%= element.idNumber %>
+                              </td>
+                              <td class="text-center">
+                                <%= element.typeOfPriority %>
+                              </td>
+                              <td class="text-center"><%= element.birth %></td>
+                              <td class="text-center">
+                                <%= element.cenomar %>
+                              </td>
+                              <td class="text-center">
+                                <%= element.marriage %>
+                              </td>
+                              <td class="text-center"><%= element.death %></td>
+                              <td class="text-center">
+                                <button
+                                  class="btn btn-sm btn-outline-danger"
+                                  onclick="deletePriority(`<%= element.id%>`)"
+                                >
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    fill="currentColor"
+                                    class="bi bi-trash"
+                                    viewBox="0 0 16 16"
+                                  >
+                                    <path
+                                      d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"
+                                    />
+                                    <path
+                                      d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"
+                                    />
+                                  </svg>
+                                </button>
+                              </td>
+                            </tr>
+                            <% }) %>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

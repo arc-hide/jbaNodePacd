@@ -1,0 +1,278 @@
+html,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --primary: #3a59d1;
+  --secondary: #3d90d7;
+  --light: #7ac6d2;
+  --semilight: #b5fccd;
+}
+body {
+  height: 100%;
+}
+
+h2 {
+  color: var(--light);
+}
+nav {
+  background-color: var(--light);
+}
+nav > div > div > a {
+  color: var(--light);
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+nav > div > div > a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+thead > tr > th {
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+}
+#tbody > tr > td {
+  text-transform: capitalize;
+  font-size: 16px;
+}
+html,
+.card {
+  border-radius: 0.5rem;
+}
+td {
+  text-align: center;
+}
+.table-scroll {
+  border-radius: 0.5rem;
+}
+
+.table-scroll table thead th {
+  font-size: 1.25rem;
+}
+thead {
+  top: 0;
+  position: sticky;
+}
+.logo-tag {
+  color: var(--uib-color);
+  font-size: 10px;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+.bi-icon {
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+}
+.report {
+  padding: 15px;
+  margin-top: 20px;
+  width: 100%;
+  height: 30vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/img/bagongF.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left, top;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.trHead {
+  background-color: var(--primary);
+}
+.report > .right,
+.report > .left {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#date {
+  font-size: 18px;
+  color: var(--light);
+}
+.head {
+  background: var(--secondary);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 5px;
+}
+.head > .logoy {
+  width: 100%;
+}
+.crsTags {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* From Uiverse.io by andrew-demchenk0 */
+/* From Uiverse.io by abrahamcalsin */
+.dot-spinner {
+  --uib-size: 2.8rem;
+  --uib-speed: 0.9s;
+  --uib-color: #183153;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: var(--uib-size);
+  width: var(--uib-size);
+}
+
+.dot-spinner__dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+}
+
+.dot-spinner__dot::before {
+  content: "";
+  height: 20%;
+  width: 20%;
+  border-radius: 50%;
+  background-color: var(--uib-color);
+  transform: scale(0);
+  opacity: 0.5;
+  animation: pulse0112 calc(var(--uib-speed) * 1.111) ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(18, 31, 53, 0.3);
+}
+
+.dot-spinner__dot:nth-child(2) {
+  transform: rotate(45deg);
+}
+
+.dot-spinner__dot:nth-child(2)::before {
+  animation-delay: calc(var(--uib-speed) * -0.875);
+}
+
+.dot-spinner__dot:nth-child(3) {
+  transform: rotate(90deg);
+}
+
+.dot-spinner__dot:nth-child(3)::before {
+  animation-delay: calc(var(--uib-speed) * -0.75);
+}
+
+.dot-spinner__dot:nth-child(4) {
+  transform: rotate(135deg);
+}
+
+.dot-spinner__dot:nth-child(4)::before {
+  animation-delay: calc(var(--uib-speed) * -0.625);
+}
+
+.dot-spinner__dot:nth-child(5) {
+  transform: rotate(180deg);
+}
+
+.dot-spinner__dot:nth-child(5)::before {
+  animation-delay: calc(var(--uib-speed) * -0.5);
+}
+
+.dot-spinner__dot:nth-child(6) {
+  transform: rotate(225deg);
+}
+
+.dot-spinner__dot:nth-child(6)::before {
+  animation-delay: calc(var(--uib-speed) * -0.375);
+}
+
+.dot-spinner__dot:nth-child(7) {
+  transform: rotate(270deg);
+}
+
+.dot-spinner__dot:nth-child(7)::before {
+  animation-delay: calc(var(--uib-speed) * -0.25);
+}
+
+.dot-spinner__dot:nth-child(8) {
+  transform: rotate(315deg);
+}
+
+.dot-spinner__dot:nth-child(8)::before {
+  animation-delay: calc(var(--uib-speed) * -0.125);
+}
+
+@keyframes pulse0112 {
+  0%,
+  100% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+/* From Uiverse.io by Satwinder04 */
+/* Input container */
+.input-contain {
+  width: 220px;
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  right: 10px;
+  top: calc(50% + 5px);
+  transform: translateY(calc(-50% - 5px));
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  transition: 0.2s linear;
+  border: 2.5px solid black;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.input:focus {
+  outline: none;
+  border: 0.5px solid black;
+  box-shadow: -5px -5px 0px black;
+}
+
+.input-container:hover > .icon {
+  animation: anim 1s linear infinite;
+}
+
+@keyframes anim {
+  0%,
+  100% {
+    transform: translateY(calc(-50% - 5px)) scale(1);
+  }
+
+  50% {
+    transform: translateY(calc(-50% - 5px)) scale(1.1);
+  }
+}

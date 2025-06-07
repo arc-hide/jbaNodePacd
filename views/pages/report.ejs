@@ -1,0 +1,323 @@
+<div class="container report jumbotron">
+  <div class="right">
+    <div class="dot-spinner" id="spin" style="display: none">
+      <div class="dot-spinner__dot"></div>
+      <div class="dot-spinner__dot"></div>
+      <div class="dot-spinner__dot"></div>
+      <div class="dot-spinner__dot"></div>
+      <div class="dot-spinner__dot"></div>
+      <div class="dot-spinner__dot"></div>
+      <div class="dot-spinner__dot"></div>
+      <div class="dot-spinner__dot"></div>
+    </div>
+    <button class="btn btn-primary" id="downloadId" onclick="btnDownload()">
+      <i class="fa fa-download" aria-hidden="true"></i> download appointment
+      list
+    </button>
+  </div>
+  <div class="left">
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#exampleModalCenter"
+      data-backdrop="static"
+    >
+      report counter
+    </button>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModalCenter"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content" id="modalContent">
+          <div id="modaltoPrint">
+            <div class="modal-header">
+              <h5 class="modal-title text-center" id="exampleModalLongTitle">
+                Daily Statistic Rreport Of priorities
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body d-flex justify-content-center g-3">
+              <div class="w-100">
+                <div class="client-sc">
+                  <p class="text-muted text-small"><%= dateFormat %></p>
+                  <ul class="list-inline">
+                    <li class="list-inline-item">
+                      <p>total Clients: <%= prioritySum %></p>
+                    </li>
+                  </ul>
+                </div>
+
+                <div
+                  class="w-100 d-flex flex-column justify-content-center bg-success"
+                ></div>
+
+                <table class="table table-bordered">
+                  <thead>
+                    <tr style="color: black">
+                      <th scope="col" style="color: black">Priorities</th>
+                      <th scope="col" style="color: black">Birth</th>
+                      <th scope="col" style="color: green">Cenomar</th>
+                      <th scope="col" style="color: crimson">Marriage</th>
+                      <th scope="col" style="color: gold">Death</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <div class="d-flex flex-row justify-content-between">
+                          <div class="d-flex justify-content-center">
+                            senior
+                          </div>
+                          <span class="badge badge-dark"
+                            ><%= senior %>client</span
+                          >
+                        </div>
+                      </th>
+                      <td><%= sbn %></td>
+                      <td>
+                        <span class="b"> <%= sc%></span>
+                      </td>
+                      <td>
+                        <span class=""><%= sm %></span>
+                      </td>
+                      <td>
+                        <span class="b"> <%= sd %></span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <div class="d-flex flex-row justify-content-between">
+                          <div class="d-flex justify-content-center">
+                            Phil-ID
+                          </div>
+                          <span class="badge badge-dark"
+                            ><%= philId%>client</span
+                          >
+                        </div>
+                      </th>
+                      <td><%= phib %></td>
+                      <td>
+                        <span class=""> <%= phicn%></span>
+                      </td>
+                      <td>
+                        <span class=""><%= phima %></span>
+                      </td>
+                      <td>
+                        <span class=""> <%= phid %></span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <div class="d-flex flex-row justify-content-between">
+                          <div class="d-flex justify-content-center">
+                            pregnant
+                          </div>
+                          <span class="badge badge-dark"
+                            ><%= pregnant %>clients</span
+                          >
+                        </div>
+                      </th>
+                      <td><%= bn %></td>
+                      <td>
+                        <span class="b"> <%= pc%></span>
+                      </td>
+                      <td>
+                        <span class=""><%= pm %></span>
+                      </td>
+                      <td>
+                        <span class="b"> <%= pd %></span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <div class="d-flex flex-row justify-content-between">
+                          <div class="d-flex justify-content-center">
+                            Hospital Req.
+                          </div>
+                          <span class="badge badge-dark"
+                            ><%= hospitalReq%>clients</span
+                          >
+                        </div>
+                      </th>
+                      <td><%= hb %></td>
+                      <td>
+                        <span class=""> <%= hc%></span>
+                      </td>
+                      <td>
+                        <span class=""><%= hm %></span>
+                      </td>
+                      <td>
+                        <span class=""> <%= hd %></span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <div class="d-flex flex-row justify-content-between">
+                          <div class="d-flex justify-content-center">
+                            Emergency
+                          </div>
+                          <span class="badge badge-dark"
+                            ><%= urgent %>client</span
+                          >
+                        </div>
+                      </th>
+                      <td><%= urb %></td>
+                      <td>
+                        <span class="b"> <%= urc%></span>
+                      </td>
+                      <td>
+                        <span class=""><%= urm %></span>
+                      </td>
+                      <td>
+                        <span class="b"> <%= urd %></span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <div class="d-flex flex-row justify-content-between">
+                          <div class="d-flex justify-content-center">Pwd</div>
+                          <span class="badge badge-dark"><%= pwd %>client</span>
+                        </div>
+                      </th>
+                      <td><%= pdb %></td>
+                      <td>
+                        <span class=""> <%= pw%></span>
+                      </td>
+                      <td>
+                        <span class=""><%= pwmar %></span>
+                      </td>
+                      <td>
+                        <span class=""> <%= pwdet %></span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        Total:: <span> <%= totalDocs %> Application Forms</span>
+                      </th>
+                      <td>
+                        <span class=""><%= totalBirth %></span>
+                      </td>
+                      <td>
+                        <span class=""><%= totalCenomar %></span>
+                      </td>
+                      <td>
+                        <span class=""><%= totalMarriage %></span>
+                      </td>
+                      <td>
+                        <span class=""><%= totalDeath %></span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="modalReport('modaltoPrint')"
+            >
+              Print
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header" id="headingTwo">
+    <h5 class="mb-0">
+      <button
+        class="btn btn-link collapsed"
+        data-toggle="collapse"
+        data-target="#collapseTwo"
+        aria-expanded="false"
+        aria-controls="collapseTwo"
+      >
+        Show appointment list
+      </button>
+    </h5>
+  </div>
+  <div
+    id="collapseTwo"
+    class="collapse"
+    aria-labelledby="headingTwo"
+    data-parent="#accordion"
+  >
+    <div class="card-body">
+      <div id="pdfTable">
+        <div class="head">
+          <div class="logoy">
+            <img src="/img/psa.png" alt="psa logo" width="80px" height="80px" />
+          </div>
+          <div class="crsTags">
+            <p class="text-center small crsTags">CRS-PACD daily report</p>
+          </div>
+
+          <p class="text-center" id="date">Date: <em><%= dateFormat %></em></p>
+        </div>
+
+        <table class="table table-bordered">
+          <thead>
+            <tr class="trHead">
+              <th scope="col">time & date</th>
+              <th scope="col">Id #</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Middle Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">PRiority Type</th>
+              <th scope="col">Birth</th>
+              <th scope="col">Cenomar</th>
+              <th scope="col">Marriage</th>
+              <th scope="col">Death</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% fetchToDownload.forEach(p => {%>
+            <tr>
+              <td style="font-size: 8px">
+                <%= new Date(p.createdAt ).toLocaleString()%>
+              </td>
+              <th scope="row" style="font-size: 8px"><%= p._id %></th>
+              <td><%= p.firstName %></td>
+              <td><%= p.middleName %></td>
+              <td><%= p.lastName %></td>
+              <td><%= p.typeOfPriority %></td>
+              <td><%= p.birth %></td>
+              <td><%= p.cenomar %></td>
+              <td><%= p.marriage %></td>
+              <td><%= p.death %></td>
+            </tr>
+            <%}); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

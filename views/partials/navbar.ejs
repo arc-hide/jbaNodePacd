@@ -1,0 +1,63 @@
+<nav
+  class="navbar bg-body-tertiary w-100 border-bottom-0 shadow-sm bg-body rounded"
+>
+  <div class="container-fluid col-12">
+    <div>
+      <a class="navbar-brand"
+        ><img src="/img/psa.png" alt="psa logo" width="80px" height="80px"
+      /></a>
+      <p class="logo-tag">
+        A4M building Arellno Ext. Dipolog City Zamboanga del norte
+      </p>
+    </div>
+    <% if (title == "homepage" || title=="admin") { %><% }else{ %>
+    <div class="bg-grey">
+      <!-- Example single danger button -->
+      <div class="btn-group">
+        <button
+          type="button"
+          class="btn dropdown-toggle"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <div class="d-flex flex-row-reverse p-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="#000"
+              class="bi bi-person-circle bi-icon"
+              viewBox="0 0 16 16"
+            >
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+              <path
+                fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+              />
+            </svg>
+            <p class="p-1 text-uppercase"><%= adminName %></p>
+          </div>
+        </button>
+
+        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+          <% if (title=="report") { %>
+          <a class="dropdown-item" href="/dashboard"
+            ><i class="fa fa-dashboard" aria-hidden="true"></i> dashboard</a
+          >
+          <% }else{ %><a class="dropdown-item" href="/report"
+            ><i class="fa fa-paragraph" aria-hidden="true"></i> Report</a
+          >
+          <% } %>
+          <a class="dropdown-item" href="/logout" class="col order-last"
+            ><i class="dw dw-logout"></i>logout</a
+          >
+        </div>
+      </div>
+
+      <% } %> <% if (title=="homepage") {%>
+      <h2>Psa-crs PACD Dipolog City</h2>
+      <% } %>
+    </div>
+  </div>
+</nav>
