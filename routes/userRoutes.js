@@ -41,7 +41,7 @@ router.get("/dashboard", checkLogin, getPriorities);
 router.post("/addPriority", addPriority);
 //@homepage
 router.get("/", notLogin, (req, res) => {
-  res.render("index", { title: "homepage", fields: null });
+  res.render("index", { title: "psaDipolog", fields: null });
 });
 //administrator
 

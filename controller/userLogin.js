@@ -28,11 +28,9 @@ const userLogin = assyncHandler(async (req, res) => {
     console.log(name);
 
     res.redirect("/dashboard");
-  } else {
-    res.render("index", notLogin, {
-      title: "login",
-      fields: "wrong credentials or your out of order!",
-    });
+  }
+  if (!user) {
+    res.redirect("/");
   }
 });
 

@@ -221,7 +221,12 @@ const deletePriority = async (req, res) => {
 };
 
 const deleteAllPriority = async (req, res) => {
-  console.log("deleting all the priorities");
+  try {
+    const deleteAll = await setPriority.deleteMany({});
+    if (deleteAll) {
+      res.redirect("/dashboard");
+    }
+  } catch (error) {}
 };
 
 module.exports = {
