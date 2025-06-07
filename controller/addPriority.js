@@ -220,9 +220,14 @@ const deletePriority = async (req, res) => {
   }
 };
 
+function deleteAllPriority() {
+  alert("DELETE ALL PRIORTIES");
+}
+
 module.exports = {
   addPriority,
   searchPriority,
   getPriorities,
   deletePriority,
+  deleteAllPriority,
 };

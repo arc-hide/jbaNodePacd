@@ -9,6 +9,7 @@ const {
   searchPriority,
   getPriorities,
   deletePriority,
+  deleteAllPriority,
 } = require("../controller/addPriority");
 const {
   AdministratorLogin,
@@ -19,6 +20,7 @@ const {
 router.post("/loginUser", userLogin);
 router.post("/userAdmin", addUser);
 router.get("/search/:key", searchPriority);
+router.get("/deleteAllPriority", deleteAllPriority);
 
 //@admmin login
 //@administrator post
