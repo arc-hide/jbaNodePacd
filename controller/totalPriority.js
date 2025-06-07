@@ -5,6 +5,7 @@ const priorityToDownload = assyncHandler(async (req, res) => {
   try {
     const curentDate = new Date();
     const options = {
+      timeZone: "Asia/Manila",
       weekday: "long",
       year: "numeric",
       month: "long",
