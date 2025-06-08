@@ -3,7 +3,7 @@
   <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
     <li class="nav-item mr-3">
       <a
-        class="button"
+        class="button text-white"
         id="pills-home-tab"
         data-toggle="pill"
         href="#pills-home"
@@ -15,7 +15,7 @@
     </li>
     <li class="nav-item mr-3">
       <a
-        class="button"
+        class="button text-white"
         id="pills-contact-tab"
         data-toggle="pill"
         href="#pills-contact"
@@ -42,9 +42,9 @@
             Register <cite title="Source Title">Priority Person</cite>
           </figcaption>
         </figure>
-        <div class="form-row col">
-          <div class="row row-cols-auto">
-            <div class="col">
+        <div class="">
+          <div class="form-row">
+            <div class="form-group col-12 col-md-6">
               <input
                 type="text"
                 class="form-control"
@@ -53,7 +53,7 @@
                 required
               />
             </div>
-            <div class="col">
+            <div class="form-group col-12 col-md-6">
               <input
                 type="text"
                 class="form-control"
@@ -61,7 +61,7 @@
                 name="middleName"
               />
             </div>
-            <div class="col">
+            <div class="form-group col-12 col-md-6">
               <input
                 type="text"
                 class="form-control"
@@ -70,106 +70,119 @@
                 required
               />
             </div>
-            <div class="col">
+            <div class="form-group col-12 col-md-6">
               <input
                 type="text"
-                class="form-control-sm"
+                class="form-control"
                 placeholder="id Number"
                 name="idNumber"
                 required
               />
             </div>
-
-            <select
-              class="form-select-sm col-2 bg-grey form-control-sm"
-              aria-label="Default select example "
-              name="typeOfPriority"
-              required
-            >
-              <option selected>Type OF Priority</option>
-              <option value="senior">senior</option>
-              <option value="pregnant">pregnant</option>
-              <option value="pwd">pwd</option>
-              <option value="Hospital">Hospital requirement</option>
-              <option value="urgent">emergency</option>
-              <option value="philid">Phil-id</option>
-            </select>
+            <div class="form-group col-12 col-md-6">
+              <select
+                class="form-control"
+                aria-label="Default select example "
+                name="typeOfPriority"
+                required
+              >
+                <option selected>Type OF Priority</option>
+                <option value="senior">senior</option>
+                <option value="pregnant">pregnant</option>
+                <option value="pwd">pwd</option>
+                <option value="Hospital">Hospital requirement</option>
+                <option value="urgent">emergency</option>
+                <option value="philid">Phil-id</option>
+              </select>
+            </div>
           </div>
           <blockquote class="mt-3">Document type of transactions:</blockquote>
-          <div class="container row row-cols-auto">
-            <select
-              class="form-select-xs col-1 bg-secondary form-control-sm"
-              aria-label="Default select example "
-              name="birth"
-            >
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-            &nbsp;
-            <select
-              class="form-select-sm col-1 bg-warning form-control-sm"
-              aria-label="Default select example"
-              name="death"
-            >
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-            &nbsp;
-            <select
-              class="form-select-sm col-1 bg-danger form-control-sm"
-              aria-label="Default select example "
-              name="marriage"
-            >
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-            &nbsp;
+          <div class="form-row">
+            <div class="form-group col-12 col-md-3">
+              <label for="selectOption">Number of birth</label>
+              <select
+                class="form-control form-control-sm bg-secondary"
+                aria-label="Default select example"
+                name="birth"
+              >
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
 
-            <select
-              class="form-select-sm col-1 bg-success form-control-sm"
-              aria-label="Default select example "
-              name="cenomar"
-            >
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
+            <div class="form-group col-12 col-md-3">
+              <label for="selectOption">Number of Death:</label>
+              <select
+                class="form-control form-control-sm bg-warning"
+                aria-label="Default select example"
+                name="death"
+              >
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+
+            <div class="form-group col-12 col-md-3">
+              <label for="selectOption">Number og marriage:</label>
+              <select
+                class="form-control form-control-sm bg-danger"
+                aria-label="Default select example"
+                name="marriage"
+              >
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+
+            <div class="form-group col-12 col-md-3">
+              <label for="selectOption">Number of cenomar:</label>
+              <select
+                class="form-control form-control-sm bg-success"
+                aria-label="Default select example"
+                name="cenomar"
+              >
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
           </div>
+
           <div class="w-100 d-flex justify-content-end align-items-end mt-3">
             <button type="submit" class="btn btn-secondary mb-3">
               Confirm Priority
@@ -185,37 +198,37 @@
       role="tabpanel"
       aria-labelledby="pills-contact-tab"
     >
-      <div class="container mt-5 w-auto">
-        &nbsp;
-        <div class="container d-flex bd-highlight">
-          <figcaption class="blockquote-footer p-2 w-100 bd-highlight">
-            List of <cite title="Source Title">Priorities:</cite>
-          </figcaption>
+      <div class="container my-4 bg-warning p-3 rounded">
+        <div class="row align-items-center justify-content-between mb-3">
+          <!-- Title -->
+          <div class="col-12 col-md-auto mb-2 mb-md-0">
+            <figcaption class="blockquote-footer">
+              List of <cite title="Source Title">Priorities:</cite>
+            </figcaption>
+          </div>
 
-          <!-- From Uiverse.io by boryanakrasteva -->
-          <div class="input-contain">
-            <input
-              type="text"
-              name="search"
-              id="search"
-              class="input"
-              placeholder="search prio..."
-            />
-            <span class="icon">
-              <svg
-                width="19px"
-                height="19px"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+          <!-- Search Bar -->
+          <div class="col-12 col-md-6">
+            <div class="position-relative">
+              <input
+                type="text"
+                name="search"
+                id="search"
+                class="form-control"
+                placeholder="Search prio..."
+              />
+              <span
+                class="position-absolute"
+                style="right: 10px; top: 50%; transform: translateY(-50%)"
               >
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></g>
-                <g id="SVGRepo_iconCarrier">
+                <!-- Search Icon -->
+                <svg
+                  width="19px"
+                  height="19px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path
                     opacity="1"
                     d="M14 5H20"
@@ -247,18 +260,30 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   ></path>
-                </g>
-              </svg>
-            </span>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="row">
+          <div class="col-6 col-sm-4 col-md-auto mb-2">
+            <a href="/" class="btn btn-outline-primary btn-sm w-100">
+              <i class="fa fa-refresh p-1" aria-hidden="true"></i> Refresh
+            </a>
+          </div>
+          <div class="col-6 col-sm-4 col-md-auto mb-2">
+            <a
+              href="/deleteAllPriority"
+              class="btn btn-outline-danger btn-sm w-100"
+            >
+              <i class="fa fa-trash-o" aria-hidden="true"></i> Delete All
+              Priority
+            </a>
           </div>
         </div>
       </div>
-      <a href="/" class="ml-3 p-3"
-        ><i class="fa fa-refresh p-1" aria-hidden="true"></i>Refresh</a
-      >
-      <a href="/deleteAllPriority"
-        ><i class="fa fa-trash-o" aria-hidden="true"></i> delete all priority</a
-      >
 
       <section class="">
         <div class="bg-image" style="background-color: #f5f7fa">
@@ -268,58 +293,54 @@
                 <div class="col-12">
                   <div class="card">
                     <div class="card-body p-0">
-                      <div class="table">
-                        <table class="table mb-0 .table-bordered">
+                      <div class="table-responsive">
+                        <table class="table mb-0 table-bordered">
                           <thead style="background-color: #002d72">
                             <tr>
-                              <th scope="col-sm" style="font-size: 18px">
-                                Date
-                              </th>
-                              <th scope="col-sm" style="font-size: 18px">
+                              <th scope="col" style="font-size: 18px">Date</th>
+                              <th scope="col" style="font-size: 18px">
                                 Firstname
                               </th>
-                              <th scope="col-sm" style="font-size: 18px">
+                              <th scope="col" style="font-size: 18px">
                                 Middlename
                               </th>
-                              <th scope="col-sm" style="font-size: 18px">
+                              <th scope="col" style="font-size: 18px">
                                 Lastname
                               </th>
-                              <th scope="col-sm" style="font-size: 18px">
-                                Id #
-                              </th>
-                              <th scope="col-sm" style="font-size: 18px">
-                                type Of Priority
+                              <th scope="col" style="font-size: 18px">Id #</th>
+                              <th scope="col" style="font-size: 18px">
+                                Type Of Priority
                               </th>
                               <th
-                                scope="col-sm"
+                                scope="col"
                                 class="text-center"
                                 style="font-size: 18px"
                               >
                                 Birth
                               </th>
                               <th
-                                scope="col-sm"
+                                scope="col"
                                 class="text-center"
                                 style="font-size: 18px"
                               >
                                 Cenomar
                               </th>
                               <th
-                                scope="col-sm"
+                                scope="col"
                                 class="text-center"
                                 style="font-size: 18px"
                               >
                                 Marriage
                               </th>
                               <th
-                                scope="col-sm"
+                                scope="col"
                                 class="text-center"
                                 style="font-size: 18px"
                               >
                                 Death Cert.
                               </th>
                               <th
-                                scope="col-sm"
+                                scope="col"
                                 class="text-center"
                                 style="font-size: 18px"
                               >
@@ -333,9 +354,8 @@
                               <td class="text-center">
                                 <em style="font-size: 12px; line-height: 1px">
                                   <%= new
-                                  Date(element.createdAt).toLocaleString()
-                                  %></em
-                                >
+                                  Date(element.createdAt).toLocaleString() %>
+                                </em>
                               </td>
                               <td class="text-center">
                                 <%= element.firstName %>
@@ -387,6 +407,7 @@
                           </tbody>
                         </table>
                       </div>
+                      <!-- table-responsive -->
                     </div>
                   </div>
                 </div>

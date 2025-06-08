@@ -272,51 +272,59 @@
   >
     <div class="card-body">
       <div id="pdfTable">
-        <div class="head">
-          <div class="logoy">
-            <img src="/img/psa.png" alt="psa logo" width="80px" height="80px" />
+        <div
+          class="head d-flex flex-column flex-md-row align-items-center justify-content-between mb-3"
+        >
+          <div class="logoy mb-2 mb-md-0">
+            <img
+              src="/img/psa.png"
+              alt="psa logo"
+              class="img-fluid"
+              style="max-height: 80px"
+            />
           </div>
-          <div class="crsTags">
-            <p class="text-center small crsTags">CRS-PACD daily report</p>
+          <div class="text-center">
+            <p class="small mb-1 font-weight-bold">CRS-PACD Daily Report</p>
+            <p id="date" class="mb-0">Date: <em><%= dateFormat %></em></p>
           </div>
-
-          <p class="text-center" id="date">Date: <em><%= dateFormat %></em></p>
         </div>
 
-        <table class="table table-bordered">
-          <thead>
-            <tr class="trHead">
-              <th scope="col">time & date</th>
-              <th scope="col">Id #</th>
-              <th scope="col">First Name</th>
-              <th scope="col">Middle Name</th>
-              <th scope="col">Last Name</th>
-              <th scope="col">PRiority Type</th>
-              <th scope="col">Birth</th>
-              <th scope="col">Cenomar</th>
-              <th scope="col">Marriage</th>
-              <th scope="col">Death</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% fetchToDownload.forEach(p => {%>
-            <tr>
-              <td style="font-size: 8px">
-                <%= new Date(p.createdAt ).toLocaleString()%>
-              </td>
-              <th scope="row" style="font-size: 8px"><%= p._id %></th>
-              <td><%= p.firstName %></td>
-              <td><%= p.middleName %></td>
-              <td><%= p.lastName %></td>
-              <td><%= p.typeOfPriority %></td>
-              <td><%= p.birth %></td>
-              <td><%= p.cenomar %></td>
-              <td><%= p.marriage %></td>
-              <td><%= p.death %></td>
-            </tr>
-            <%}); %>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table table-bordered table-sm">
+            <thead class="thead-light">
+              <tr class="trHead text-center">
+                <th scope="col">Time & Date</th>
+                <th scope="col">ID #</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Middle Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Priority Type</th>
+                <th scope="col">Birth</th>
+                <th scope="col">Cenomar</th>
+                <th scope="col">Marriage</th>
+                <th scope="col">Death</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% fetchToDownload.forEach(p => { %>
+              <tr>
+                <td class="text-nowrap" style="font-size: 8px">
+                  <%= new Date(p.createdAt).toLocaleString() %>
+                </td>
+                <td class="text-nowrap" style="font-size: 8px"><%= p._id %></td>
+                <td><%= p.firstName %></td>
+                <td><%= p.middleName %></td>
+                <td><%= p.lastName %></td>
+                <td><%= p.typeOfPriority %></td>
+                <td><%= p.birth %></td>
+                <td><%= p.cenomar %></td>
+                <td><%= p.marriage %></td>
+                <td><%= p.death %></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
