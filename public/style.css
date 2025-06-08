@@ -114,9 +114,9 @@ thead {
   padding: 15px;
   margin-top: 20px;
   width: 100%;
-  height: 30vh;
+  height: 40vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/img/bagongF.jpg");
+    url(img/docs.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: left, top;
