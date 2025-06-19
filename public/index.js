@@ -86,9 +86,9 @@ function btnDownload() {
     const option = {
       margin: 1,
       filename: "report of the day",
-      image: { type: "jpeg", quality: 0.98 },
+      image: { type: "png", quality: 0.98 },
       html2canvas: { scale: 2 },
-      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+      jsPDF: { unit: "in", format: "legal", orientation: "landscape" },
     };
     html2pdf(pdf, option);
   }
@@ -103,4 +103,23 @@ function modalReport(divPrint) {
   window.print();
   document.body.innerHTML = origContent;
   window.location.reload();
+}
+
+function deletePriorities() {
+  const delAllP = document.getElementById("delAlPrio");
+  const confirmInput = `<input type="text"  class="form-control" name="conAction" id="conAction" placeholder="enter password for override"/>`;
+  const continueToDelete = `  <a
+              href="/deleteAllPriority"
+              class="btn btn-outline-success btn-sm w-100"
+            >
+              <i class="fa fa-trash-o" aria-hidden="true"></i> continue to delete
+            </a>`;
+  delAllP.innerHTML = confirmInput;
+  //input
+  const confirmInputFinal = document.getElementById("conAction");
+  confirmInputFinal.addEventListener("input", () => {
+    if (confirmInputFinal.value === "admin") {
+      delAllP.innerHTML = continueToDelete;
+    }
+  });
 }

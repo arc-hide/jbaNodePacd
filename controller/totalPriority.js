@@ -37,6 +37,7 @@ const priorityToDownload = assyncHandler(async (req, res) => {
     });
 
     const prioritySum = senior + pwd + urgent + hospitalReq + pregnant + philId;
+    const seniorSum = senior + pwd + urgent + hospitalReq + pregnant;
 
     //@total pregnant api
     //pregnant birth
@@ -294,10 +295,10 @@ const priorityToDownload = assyncHandler(async (req, res) => {
     });
     //@end of pwd
 
-    const totalBirth = bn + sbn + phib + hb + urb + pdb;
-    const totalCenomar = sc + pc + hc + phicn + urc + pw;
-    const totalMarriage = sm + pm + hm + phima + urm + pwmar;
-    const totalDeath = sd + pd + hd + phid + urd + pwdet;
+    const totalBirth = bn + sbn + hb + urb + pdb;
+    const totalCenomar = sc + pc + hc + urc + pw;
+    const totalMarriage = sm + pm + hm + urm + pwmar;
+    const totalDeath = sd + pd + hd + urd + pwdet;
     const totalDocs = totalBirth + totalCenomar + totalMarriage + totalDeath;
     res.render("pages/report", {
       title: "report",
@@ -305,6 +306,7 @@ const priorityToDownload = assyncHandler(async (req, res) => {
       fetchToDownload,
       philId,
       prioritySum,
+      seniorSum,
       senior,
       pwd,
       urgent,
