@@ -7,7 +7,7 @@ const setPriority = require("../models/priorityModel");
 // =====================================================
 
 const formatDateTime = (date) => {
-  return new Intl.DateTimeFormat("en-US", {
+  return new Intl.DateTimeFormat("en-PH", {
     timeZone: "Asia/Manila",
     month: "2-digit",
     day: "2-digit",
