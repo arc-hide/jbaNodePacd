@@ -3,19 +3,19 @@ const setPriority = require("../models/priorityModel");
 
 const priorityToDownload = assyncHandler(async (req, res) => {
   try {
-    const curentDate = new Date();
-    const options = {
-      timeZone: "Asia/Manila",
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "2-digit",
-      // second: "2-digit",
-      // hour12: true, // Optional for AM/PM format
-    };
-    const dateFormat = curentDate.toLocaleDateString("en-PH", options);
+   const curentDate = new Date();
+
+const options = {
+  timeZone: "Asia/Manila",
+  month: "2-digit",
+  day: "2-digit",
+  year: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+  hour12: true,
+};
+
+const dateFormat = curentDate.toLocaleString("en-US", options);
     const fetchToDownload = await setPriority.find({}).sort({ _id: -1 });
     const philId = await setPriority.countDocuments({
       typeOfPriority: "philid",
