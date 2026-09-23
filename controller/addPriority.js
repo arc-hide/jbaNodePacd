@@ -77,17 +77,23 @@ const getPriorities = assyncHandler(async (req, res) => {
     title: "dashboard",
     description: "this is the description of a priority details",
   };
+
   try {
     const priorityData = await setPriority.find({}).sort({ _id: -1 });
+
     function FormatDate(date) {
       return new Intl.DateTimeFormat("en-US", {
-        day: "numeric",
-        month: "short",
+        timeZone: "Asia/Manila",
+        month: "2-digit",
+        day: "2-digit",
         year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
       }).format(date);
     }
 
-    const adlaw = FormatDate();
+    const adlaw = FormatDate(new Date());
 
     res.render("pages/dashboard", {
       title: "dashboard",
