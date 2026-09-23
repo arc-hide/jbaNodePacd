@@ -1,9 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcrypt");
+
 const { checkLogin, notLogin } = require("../middleware/middleware");
-const { userLogin, addUser } = require("../controller/userLogin");
-const { priorityToDownload } = require("../controller/totalPriority");
+
+const {
+  userLogin,
+  addUser,
+} = require("../controller/userLogin");
+
+const {
+  priorityToDownload,
+} = require("../controller/totalPriority");
+
 const {
   addPriority,
   searchPriority,
@@ -11,44 +19,104 @@ const {
   deletePriority,
   deleteAllPriority,
 } = require("../controller/addPriority");
+
 const {
   AdministratorLogin,
   addAdmin,
 } = require("../controller/adiministrator");
 
-//@user admin
-router.post("/loginUser", userLogin);
-router.post("/userAdmin", addUser);
-router.get("/search/:key", searchPriority);
-router.get("/deleteAllPriority", deleteAllPriority);
+// =====================================================
+// USER LOGIN / REGISTRATION
+// =====================================================
 
-//@admmin login
-//@administrator post
+router.post("/loginUser", userLogin);
+
+router.post("/userAdmin", addUser);
+
+// =====================================================
+// SEARCH
+// =====================================================
+
+router.get("/search/:key", checkLogin, searchPriority);
+
+// =====================================================
+// PRIORITY
+// =====================================================
+
+router.post("/addPriority", checkLogin, addPriority);
+
+router.delete(
+  "/deletePriority/:id",
+  checkLogin,
+  deletePriority
+);
+
+router.get(
+  "/deleteAllPriority",
+  checkLogin,
+  deleteAllPriority
+);
+
+// =====================================================
+// ADMINISTRATOR
+// =====================================================
+
 router.post("/addAdmin", addAdmin);
+
 router.post("/adminLogin", AdministratorLogin);
-router.delete("/deletePriority/:id", deletePriority);
 
 router.get("/psaAdminLogin", (req, res) => {
-  res.render("pages/adminLogin", { title: "admin" });
+  res.render("pages/adminLogin", {
+    title: "admin",
+  });
 });
-//@report
-router.get("/report", checkLogin, priorityToDownload);
-//searh priorities
 
-//@dashhboard
-router.get("/dashboard", checkLogin, getPriorities);
-//@priority
-router.post("/addPriority", addPriority);
-//@homepage
+// =====================================================
+// REPORT
+// =====================================================
+
+router.get(
+  "/report",
+  checkLogin,
+  priorityToDownload
+);
+
+// =====================================================
+// DASHBOARD
+// =====================================================
+
+router.get(
+  "/dashboard",
+  checkLogin,
+  getPriorities
+);
+
+// =====================================================
+// HOME PAGE
+// =====================================================
+
 router.get("/", notLogin, (req, res) => {
-  res.render("index", { title: "psaDipolog", fields: null });
+  res.render("index", {
+    title: "psaDipolog",
+    fields: null,
+  });
 });
-//administrator
+
+// =====================================================
+// LOGOUT
+// =====================================================
 
 router.get("/logout", (req, res) => {
-  req.session.destroy();
-  ``;
-  res.clearCookie("archide.io");
-  res.redirect("/");
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Logout error:", err);
+      return res.status(500).send("Unable to logout");
+    }
+
+    res.clearCookie("archide.io");
+
+    return res.redirect("/");
+  });
 });
+
 module.exports = router;
