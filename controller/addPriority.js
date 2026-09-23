@@ -1,8 +1,28 @@
-const assyncHandler = require("express-async-handler");
+const asyncHandler = require("express-async-handler");
 const setPriority = require("../models/priorityModel");
-const docStorageSchema = require("../models/docsCat");
 
-const addPriority = assyncHandler(async (req, res) => {
+// =====================================================
+// DATE FORMAT
+// Output: 09/24/2026 12:55 AM
+// =====================================================
+
+const formatDateTime = (date) => {
+  return new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Manila",
+    month: "2-digit",
+    day: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  }).format(date);
+};
+
+// =====================================================
+// ADD PRIORITY
+// =====================================================
+
+const addPriority = asyncHandler(async (req, res) => {
   const {
     firstName,
     middleName,
@@ -14,231 +34,365 @@ const addPriority = assyncHandler(async (req, res) => {
     marriage,
     cenomar,
   } = req.body;
+
+  // -----------------------------------------------
+  // Validate required fields
+  // -----------------------------------------------
+
   if (
-    !firstName ||
-    !lastName ||
-    !idNumber ||
-    !typeOfPriority ||
-    !birth ||
-    !death ||
-    !marriage ||
-    !cenomar
+    !firstName?.trim() ||
+    !lastName?.trim() ||
+    !idNumber?.trim() ||
+    !typeOfPriority?.trim() ||
+    birth === undefined ||
+    death === undefined ||
+    marriage === undefined ||
+    cenomar === undefined
   ) {
-    res.status(400).json({ message: "fields should not be empty" });
+    return res.status(400).json({
+      message: "Fields should not be empty",
+    });
   }
-  //insert docs to database
 
-  // await docStorageSchema.create({
-  //   typeOfPriority,
-  //   birth,
-  //   death,
-  //   marriage,
-  //   cenomar,
-  // });
+  // -----------------------------------------------
+  // Save priority to database
+  // -----------------------------------------------
 
-  //@save priority to database
   const priorityCreate = await setPriority.create({
-    firstName,
-    middleName,
-    lastName,
-    idNumber,
-    typeOfPriority,
+    firstName: firstName.trim(),
+    middleName: middleName?.trim() || "",
+    lastName: lastName.trim(),
+    idNumber: idNumber.trim(),
+    typeOfPriority: typeOfPriority.trim(),
     birth,
     death,
     marriage,
     cenomar,
   });
-  //check if priority is successfull
 
-  if (priorityCreate) {
-    res.redirect("/dashboard");
-  } else {
-    res.status(400).json({ message: "problem saving to database" });
+  // -----------------------------------------------
+  // Check if successful
+  // -----------------------------------------------
+
+  if (!priorityCreate) {
+    return res.status(400).json({
+      message: "Problem saving to database",
+    });
   }
+
+  return res.redirect("/dashboard");
 });
 
-//searh priority
-const searchPriority = assyncHandler(async (req, res) => {
-  let data = await setPriority.find({
+// =====================================================
+// SEARCH PRIORITY
+// =====================================================
+
+const searchPriority = asyncHandler(async (req, res) => {
+  const key = req.params.key?.trim();
+
+  if (!key) {
+    return res.status(400).json({
+      message: "Search keyword is required",
+    });
+  }
+
+  // Escape regex special characters
+  const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+  const data = await setPriority.find({
     $or: [
-      { firstName: { $regex: req.params.key } },
-      { lastName: { $regex: req.params.key } },
+      {
+        firstName: {
+          $regex: escapedKey,
+          $options: "i",
+        },
+      },
+      {
+        lastName: {
+          $regex: escapedKey,
+          $options: "i",
+        },
+      },
     ],
   });
-  if (data == "") {
-    res.send("Client not yet Verified");
-  } else {
-    res.send(data);
+
+  if (data.length === 0) {
+    return res.send("Client not yet Verified");
   }
+
+  return res.json(data);
 });
 
-const getPriorities = assyncHandler(async (req, res) => {
-  const locals = {
-    title: "dashboard",
-    description: "this is the description of a priority details",
-  };
+// =====================================================
+// GET PRIORITIES / DASHBOARD
+// =====================================================
 
+const getPriorities = asyncHandler(async (req, res) => {
   try {
-    const priorityData = await setPriority.find({}).sort({ _id: -1 });
+    const priorityData = await setPriority
+      .find({})
+      .sort({ _id: -1 });
 
-    function FormatDate(date) {
-      return new Intl.DateTimeFormat("en-US", {
-        timeZone: "Asia/Manila",
-        month: "2-digit",
-        day: "2-digit",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: true,
-      }).format(date);
-    }
+    const adlaw = formatDateTime(new Date());
 
-    const adlaw = FormatDate(new Date());
+    const adminName = req.session?.user?.Name || "Administrator";
 
-    res.render("pages/dashboard", {
+    return res.render("pages/dashboard", {
       title: "dashboard",
       adlaw,
       priorityData,
-      adminName: req.session.user.Name,
+      adminName,
     });
   } catch (error) {
-    console.error("cannot fetch priorities", error);
+    console.error("Cannot fetch priorities:", error);
+
+    return res.status(500).send("Unable to fetch priorities");
   }
 });
-//to report page
 
-//to download
-// const priorityToDownload = assyncHandler(async (req, res) => {
-//   try {
-//     const curentDate = new Date();
-//     const options = {
-//       weekday: "long",
-//       year: "numeric",
-//       month: "long",
-//       day: "numeric",
-//       hour: "numeric",
-//       minute: "2-digit",
-//       second: "2-digit",
-//       hour12: true, // Optional for AM/PM format
-//     };
-//     const dateFormat = curentDate.toLocaleDateString("en-PH", options);
-//     const fetchToDownload = await setPriority.find({}).sort({ _id: -1 });
-//     const philId = await setPriority.countDocuments({
-//       typeOfPriority: "philid",
-//     });
-//     const senior = await setPriority.countDocuments({
-//       typeOfPriority: "senior",
-//     });
-//     const pwd = await setPriority.countDocuments({
-//       typeOfPriority: "pwd",
-//     });
-//     const urgent = await setPriority.countDocuments({
-//       typeOfPriority: "urgent",
-//     });
-//     const hospitalReq = await setPriority.countDocuments({
-//       typeOfPriority: "Hospital",
-//     });
-//     const pregnant = await setPriority.countDocuments({
-//       typeOfPriority: "pregnant",
-//     });
+// =====================================================
+// REPORT
+// =====================================================
 
-//     //sum of birth by priority
-//     // const pregn = await setPriority.find(
-//     //   {
-//     //     typeOfPriority: "pregnant",
-//     //   },
-//     //   { birth: 1 }
-//     // );
-//     // //total of birth
-//     // const pre = [...pregn];
-//     // let pregTb = 0;
-//     // pre.forEach((b) => {
-//     //   return (total += b.birth);
-//     // });
-//     // const ptb = pregTb;
-//     //total of birth
-
-//     const prioritySum = senior + pwd + urgent + hospitalReq + pregnant;
-
-//     console.log("philippine is:", philId);
-//     console.log("allPriority:", prioritySum);
-//     //total births pregnant
-//     const Births = await setPriority.find(
-//       { typeOfPriority: "pregnant" },
-//       { birth: 1 }
-//     );
-//     const bth = [...Births];
-//     let bn = 0;
-//     bth.forEach((brth) => {
-//       return (bn += brth.birth);
-//     });
-//     //total senior
-//     const sen = await setPriority.find(
-//       { typeOfPriority: "senior" },
-//       { birth: 1 }
-//     );
-//     const sbth = [...sen];
-//     let sbn = 0;
-//     sbth.forEach((sb) => {
-//       return (sbn += sb.birth);
-//     });
-//     //senior cenomar
-//     const senc = await setPriority.find(
-//       { typeOfPriority: "senior" },
-//       { cenomar: 1 }
-//     );
-//     const sencen = [...senc];
-//     let sc = 0;
-//     sencen.forEach((scen) => {
-//       return (sc += scen.cenomar);
-//     });
-//     //senior
-
-//     res.render("pages/report", {
-//       title: "report",
-//       dateFormat,
-//       fetchToDownload,
-//       philId,
-//       prioritySum,
-//       senior,
-//       pwd,
-//       urgent,
-//       hospitalReq,
-//       pregnant,
-//       bn,
-//       sbn,
-//       sc,
-//     });
-//   } catch (error) {
-//     console.log("cannot fetch to download the data", error);
-//   }
-// });
-
-//delete priority
-const deletePriority = async (req, res) => {
+const priorityToDownload = asyncHandler(async (req, res) => {
   try {
-    const del = await setPriority.findByIdAndDelete(req.params.id);
-    if (del) {
-      console.log("deleted succesfully");
-    }
+    // -----------------------------------------------
+    // Current Philippine date/time
+    // -----------------------------------------------
+
+    const dateFormat = formatDateTime(new Date());
+
+    // -----------------------------------------------
+    // Get all priority records
+    // -----------------------------------------------
+
+    const fetchToDownload = await setPriority
+      .find({})
+      .sort({ _id: -1 });
+
+    // -----------------------------------------------
+    // Count priority types
+    // -----------------------------------------------
+
+    const [
+      philId,
+      senior,
+      pwd,
+      urgent,
+      hospitalReq,
+      pregnant,
+    ] = await Promise.all([
+      setPriority.countDocuments({
+        typeOfPriority: "philid",
+      }),
+
+      setPriority.countDocuments({
+        typeOfPriority: "senior",
+      }),
+
+      setPriority.countDocuments({
+        typeOfPriority: "pwd",
+      }),
+
+      setPriority.countDocuments({
+        typeOfPriority: "urgent",
+      }),
+
+      setPriority.countDocuments({
+        typeOfPriority: "Hospital",
+      }),
+
+      setPriority.countDocuments({
+        typeOfPriority: "pregnant",
+      }),
+    ]);
+
+    // -----------------------------------------------
+    // Total priority
+    // -----------------------------------------------
+
+    const prioritySum =
+      senior +
+      pwd +
+      urgent +
+      hospitalReq +
+      pregnant;
+
+    // -----------------------------------------------
+    // Pregnant - total birth
+    // -----------------------------------------------
+
+    const pregnantBirthResult = await setPriority.aggregate([
+      {
+        $match: {
+          typeOfPriority: "pregnant",
+        },
+      },
+      {
+        $group: {
+          _id: null,
+          total: {
+            $sum: {
+              $convert: {
+                input: "$birth",
+                to: "double",
+                onError: 0,
+                onNull: 0,
+              },
+            },
+          },
+        },
+      },
+    ]);
+
+    const bn = pregnantBirthResult[0]?.total || 0;
+
+    // -----------------------------------------------
+    // Senior - total birth
+    // -----------------------------------------------
+
+    const seniorBirthResult = await setPriority.aggregate([
+      {
+        $match: {
+          typeOfPriority: "senior",
+        },
+      },
+      {
+        $group: {
+          _id: null,
+          total: {
+            $sum: {
+              $convert: {
+                input: "$birth",
+                to: "double",
+                onError: 0,
+                onNull: 0,
+              },
+            },
+          },
+        },
+      },
+    ]);
+
+    const sbn = seniorBirthResult[0]?.total || 0;
+
+    // -----------------------------------------------
+    // Senior - total CENOMAR
+    // -----------------------------------------------
+
+    const seniorCenomarResult = await setPriority.aggregate([
+      {
+        $match: {
+          typeOfPriority: "senior",
+        },
+      },
+      {
+        $group: {
+          _id: null,
+          total: {
+            $sum: {
+              $convert: {
+                input: "$cenomar",
+                to: "double",
+                onError: 0,
+                onNull: 0,
+              },
+            },
+          },
+        },
+      },
+    ]);
+
+    const sc = seniorCenomarResult[0]?.total || 0;
+
+    // -----------------------------------------------
+    // Debug information
+    // -----------------------------------------------
+
+    console.log("PhilID:", philId);
+    console.log("Total Priority:", prioritySum);
+
+    // -----------------------------------------------
+    // Render report
+    // -----------------------------------------------
+
+    return res.render("pages/report", {
+      title: "report",
+      dateFormat,
+      fetchToDownload,
+      philId,
+      prioritySum,
+      senior,
+      pwd,
+      urgent,
+      hospitalReq,
+      pregnant,
+      bn,
+      sbn,
+      sc,
+    });
   } catch (error) {
-    console.error("cannot be deleted", error);
-  }
-};
+    console.error(
+      "Cannot fetch data for report:",
+      error
+    );
 
-const deleteAllPriority = async (req, res) => {
-  try {
-    const deleteAll = await setPriority.deleteMany({});
-    if (deleteAll) {
-      res.redirect("/dashboard");
-    }
-  } catch (error) {}
-};
+    return res.status(500).send(
+      "Unable to generate report"
+    );
+  }
+});
+
+// =====================================================
+// DELETE ONE PRIORITY
+// =====================================================
+
+const deletePriority = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  if (!id) {
+    return res.status(400).json({
+      message: "Priority ID is required",
+    });
+  }
+
+  const deletedPriority =
+    await setPriority.findByIdAndDelete(id);
+
+  if (!deletedPriority) {
+    return res.status(404).json({
+      message: "Priority record not found",
+    });
+  }
+
+  console.log("Priority deleted successfully");
+
+  return res.redirect("/dashboard");
+});
+
+// =====================================================
+// DELETE ALL PRIORITIES
+// =====================================================
+
+const deleteAllPriority = asyncHandler(async (req, res) => {
+  const deleteResult = await setPriority.deleteMany({});
+
+  console.log(
+    `Deleted ${deleteResult.deletedCount} priority records`
+  );
+
+  return res.redirect("/dashboard");
+});
+
+// =====================================================
+// EXPORT
+// =====================================================
 
 module.exports = {
   addPriority,
   searchPriority,
   getPriorities,
+  priorityToDownload,
   deletePriority,
   deleteAllPriority,
 };
